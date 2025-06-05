@@ -1,4 +1,5 @@
 import tkinter as tk
+import tkinter.messagebox as mb
 
 
 class Calculator:
@@ -38,10 +39,20 @@ class Calculator:
         if char == 'C':
             self.expression = ""
         elif char == '=':
-            try:
-                self.expression = str(eval(self.expression))
-            except Exception:
-                self.expression = "에러"
+            easter_eggs = {
+                "1004": "😇 천사가 나타났습니다. 뾰로롱!",
+                "7777": "🍀 럭키한 하루 되세요!",
+                "4444": "밤길 조심하세요..."
+            }
+
+            if self.expression in easter_eggs:
+                mb.showinfo("💡 이스터에그 발견!", easter_eggs[self.expression])
+                self.expression = ""
+            else:
+                try:
+                    self.expression = str(eval(self.expression))
+                except Exception:
+                    self.expression = "에러"
         else:
             self.expression += str(char)
 
